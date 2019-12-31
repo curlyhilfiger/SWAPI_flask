@@ -1,0 +1,72 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Planets{% endblock %}
+{% block name %}Jinja{% endblock %}
+
+{% block main %}
+<main>
+    <ul class="list">
+        {% for planet in planets %}
+        <li>
+            <button class="accordition">
+                {% if 'mountains' in planet['terrain'] %}
+                <span><img src="https://img.icons8.com/color/48/000000/earth-planet.png"></span>
+                {% elif 'volcanoes' in planet['terrain'] %}
+                <span><img src="https://img.icons8.com/color/48/000000/mars-planet.png"></span>
+                {% elif 'caves' in planet['terrain'] %}
+                <span><img src="https://img.icons8.com/color/48/000000/pluto-dwarf-planet.png"></span>
+                {% elif 'oceans' in planet['terrain'] %}
+                <span><img src="https://img.icons8.com/color/48/000000/neptune-planet.png"></span>
+                {% else %}
+                <span><img src="https://img.icons8.com/color/48/000000/venus-planet.png"></span>
+                {% endif %}
+                <span class="name"> {{ planet['name'] }} </span>
+                <span class="date"> Diameter: {{ planet['diameter'] }} </span>
+            </button>
+            <div class="accordition-content">
+                <div>
+                    <ul class="uk-list">
+                        <li>
+                            <i class="material-icons">settings_backup_restore</i>
+                            <span>
+                                <p class="data">Rotation period - {{ planet['rotation_period'] }}</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="material-icons">language</i>
+                            <span>
+                                <p class="data">Orbital period - {{ planet['orbital_period'] }}</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="material-icons">invert_colors</i>
+                            <span>
+                                <p class="data">Climate - {{ planet['climate'] }}</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="material-icons">terrain</i>
+                            <span>
+                                <p class="data">Terrain - {{ planet['terrain'] }}</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="material-icons">wc</i>
+                            <span>
+                                <p class="data">Population - {{ planet['population'] }}</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="material-icons">waves</i>
+                            <span>
+                                <p class="data">Water - {{ planet['surface_water'] }}</p>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}
