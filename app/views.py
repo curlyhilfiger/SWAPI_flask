@@ -1,5 +1,7 @@
 import json
 
+import requests
+
 from flask import render_template, request, redirect
 
 from app import app
@@ -7,14 +9,20 @@ from app import app
 
 @app.route("/")
 def characters():
-    """ Index page view """
+    """ Character page view """
     current = 'Characters'
-    with app.open_resource('static/txts/characters.txt') as txt:
-        json_str = txt.read()
+    url = 'https://swapi.co/api/people/'
+    res = []
+    while url:
+        req = requests.get(url)
+        json_str = req.text
         data = json.loads(json_str)
+        res.append(data['results'])
+        url = data['next']
+    print(res)
     return render_template(
         "public/templates/public_template.html",
-        characters=data,
+        characters=res,
         current=current
     )
 
@@ -22,11 +30,16 @@ def characters():
 def planets():
     """ Planets view page """
     current = 'Planets'
-    with app.open_resource('static/txts/planets.txt') as txt:
-        json_str = txt.read()
+    url = 'https://swapi.co/api/planets/'
+    res = []
+    while url:
+        req = requests.get(url)
+        json_str = req.text
         data = json.loads(json_str)
+        res.append(data['results'])
+        url = data['next']
     return render_template(
-        "public/templates/planets.html", planets=data,
+        "public/templates/planets.html", planets=res,
         current=current
     )
 
