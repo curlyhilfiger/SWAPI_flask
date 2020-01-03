@@ -1,61 +1,63 @@
-{% extends "public/templates/public_template.html" %}
-
-{% block title %}Starships{% endblock %}
-
-{% block main %}
+{% extends "public/templates/public_template.html" %} {% block title
+%}Starships{% endblock %} {% block main %}
 <main>
-    <ul class="list">
-        {% for starship in starships %}
-        <li>
-            <button class="accordition">
-                <span><img src="{{ url_for('static', filename='img/millennium-falcon.png') }}"></span>
-                <span class="name"> {{ starship['name'] }} </span>
-                <span class="date"> {{ starship['model'] }} </span>
-            </button>
-            <div class="accordition-content">
-                <div>
-                    <ul class="uk-list">
-                        <li>
-                            <i class="material-icons">money</i>
-                            <span>
-                                <p class="data">Cost - {{ starship['cost_in_credits'] }}</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="material-icons">swap_horiz</i>
-                            <span>
-                                <p class="data">Length - {{ starship['length'] }}</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="material-icons">assignment_ind</i>
-                            <span>
-                                <p class="data">Crew - {{ starship['crew'] }}</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="material-icons">airline_seat_recline_normal</i>
-                            <span>
-                                <p class="data">Passengers - {{ starship['passengers'] }}</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="material-icons">airplanemode_active</i>
-                            <span>
-                                <p class="data">Hyperdrive rating - {{ starship['hyperdrive_rating'] }}</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i class="material-icons">class</i>
-                            <span>
-                                <p class="data">Class - {{ starship['starship_class'] }}</p>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+  <ul class="list">
+    {% for i in range(4) %} {% for starship in starships[i] %}
+    <li>
+      <button class="accordition">
+        <span
+          ><img
+            src="{{ url_for('static', filename='img/millennium-falcon.png') }}"
+        /></span>
+        <span class="name"> {{ starship['name'] }} </span>
+        <span class="date"> {{ starship['model'] }} </span>
+      </button>
+      <div class="accordition-content">
+        <div>
+          <ul class="uk-list">
+            <li>
+              <i class="material-icons">money</i>
+              <span>
+                <p class="data">Cost - {{ starship['cost_in_credits'] }}</p>
+              </span>
+            </li>
+            <li>
+              <i class="material-icons">swap_horiz</i>
+              <span>
+                <p class="data">Length - {{ starship['length'] }}</p>
+              </span>
+            </li>
+            <li>
+              <i class="material-icons">assignment_ind</i>
+              <span>
+                <p class="data">Crew - {{ starship['crew'] }}</p>
+              </span>
+            </li>
+            <li>
+              <i class="material-icons">airline_seat_recline_normal</i>
+              <span>
+                <p class="data">Passengers - {{ starship['passengers'] }}</p>
+              </span>
+            </li>
+            <li>
+              <i class="material-icons">airplanemode_active</i>
+              <span>
+                <p class="data">
+                  Hyperdrive rating - {{ starship['hyperdrive_rating'] }}
+                </p>
+              </span>
+            </li>
+            <li>
+              <i class="material-icons">class</i>
+              <span>
+                <p class="data">Class - {{ starship['starship_class'] }}</p>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    {% endfor %} {% endfor %}
+  </ul>
 </main>
 {% endblock %}
